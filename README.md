@@ -6,3 +6,4 @@ https://pakornpat.gitbook.io/ios-app/swift/class-struct
 4. Custom request API with Alamofire.
 5. Project Software-Test, Unittest and UI test.
 6. TryCreateFrameworkandUsing, Basic create and use Framework. 
+7. Basic UITapGestureRecognizer, LikeFacebookAnimation and DoubleTabLikeIG
