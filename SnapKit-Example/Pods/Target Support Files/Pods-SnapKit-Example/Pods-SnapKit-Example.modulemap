@@ -1,0 +1,6 @@
+framework module Pods_SnapKit_Example {
+  umbrella header "Pods-SnapKit-Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
