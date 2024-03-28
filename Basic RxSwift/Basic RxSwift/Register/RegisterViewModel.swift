@@ -41,6 +41,7 @@ class RegisterViewModel:NSObject {
                     observer.onCompleted()
                 } else {
                     observer.onError(withError)
+                    observer.onCompleted()
                 }
             }
             return Disposables.create()
