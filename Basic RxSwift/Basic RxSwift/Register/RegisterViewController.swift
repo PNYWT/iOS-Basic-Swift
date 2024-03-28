@@ -98,45 +98,43 @@ class RegisterViewController: UIViewController {
         registerManager.emailValid?.bind(to: emailRegister.rx.isValid).disposed(by: disposeBag)
         registerManager.submitValid?.bind(to: registerButton.rx.isEnabled).disposed(by: disposeBag)
         
-        //Setup Action Button
-        registerButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                print("registerButton Working")
-                guard let self = self else { return }
-                        let username = self.usernameRegister.text ?? ""
-                        let password = self.passwordRegister.text ?? ""
-                        let email = self.emailRegister.text ?? ""
-                        
-                        self.registerManager.checkAndSaveAccount(username: username, password: password, email: email)
-                            .observe(on: MainScheduler.instance)
-                            .subscribe {  event in
-                                switch event {
-                                case .next(let status):
-                                    switch status {
-                                    case .Success:
-                                        self.showAlert(message: status.rawValue).subscribe(onNext: { _ in
-                                            ConfigApp.initWindows(isGoMain: true)
-                                        }).disposed(by: self.disposeBag)
-                                    case .FailJSONDecoder, .FailJSONEncoder:
-                                        self.showAlert(message: status.rawValue).subscribe(onNext: { _ in
-                                            return
-                                        }).disposed(by: self.disposeBag)
-                                    case .FailAlreadyhaveAccount:
-                                        self.showAlert(message: status.rawValue).subscribe(onNext: { _ in
-                                            return
-                                        }).disposed(by: self.disposeBag)
-                                    }
-                                case .error(let error):
-                                    print("An error occurred: \(error)")
-                                    // Handle observable error
-                                default:
-                                    break
-                                }
-                            }
-                            .disposed(by: self.disposeBag)
-            })
-            .disposed(by: disposeBag)
-
+        registerButton.rx.tap.subscribe { [weak self] in
+            print("registerButton Working")
+            guard let self = self else { return }
+            self.registerButton.isEnabled = false
+            let username = self.usernameRegister.text ?? ""
+            let password = self.passwordRegister.text ?? ""
+            let email = self.emailRegister.text ?? ""
+            
+            self.registerManager.checkAndSaveAccount(username: username, password: password, email: email)
+                .observe(on: MainScheduler.instance)
+                .subscribe {  event in
+                    switch event {
+                    case .next(let status):
+                        switch status {
+                        case .Success:
+                            self.showAlert(message: status.rawValue).subscribe(onNext: { _ in
+                                ConfigApp.initWindows(isGoMain: true)
+                            }).disposed(by: self.disposeBag)
+                        case .FailJSONDecoder, .FailJSONEncoder:
+                            self.showAlert(message: status.rawValue).subscribe(onNext: { _ in
+                                return
+                            }).disposed(by: self.disposeBag)
+                        case .FailAlreadyhaveAccount:
+                            self.showAlert(message: status.rawValue).subscribe(onNext: { _ in
+                                return
+                            }).disposed(by: self.disposeBag)
+                        }
+                    case .error(let error):
+                        print("An error occurred: \(error)")
+                    default:
+                        break
+                    }
+                }
+                .disposed(by: self.disposeBag)
+        } onCompleted: {
+            self.registerButton.isEnabled = true
+        }.disposed(by: disposeBag)
     }
     
     override func viewDidLayoutSubviews() {
