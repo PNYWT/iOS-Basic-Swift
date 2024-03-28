@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Register:NSObject{
+class Register:NSObject {
     
     static let AccountList = "AccountList"
     var alertAlert:((_ messageError:StatusRegister)->Void)?
