@@ -99,7 +99,6 @@ class RegisterViewController: UIViewController {
         registerManager.submitValid?.bind(to: registerButton.rx.isEnabled).disposed(by: disposeBag)
         
         registerButton.rx.tap.subscribe { [weak self] in
-            print("registerButton Working")
             guard let self = self else { return }
             self.registerButton.isEnabled = false
             let username = self.usernameRegister.text ?? ""
@@ -130,8 +129,7 @@ class RegisterViewController: UIViewController {
                     default:
                         break
                     }
-                }
-                .disposed(by: self.disposeBag)
+                }.disposed(by: self.disposeBag)
         } onCompleted: {
             self.registerButton.isEnabled = true
         }.disposed(by: disposeBag)
