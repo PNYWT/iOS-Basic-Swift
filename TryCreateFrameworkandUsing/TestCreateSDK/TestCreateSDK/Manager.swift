@@ -8,12 +8,13 @@
 import Foundation
 import UIKit
 
-public class Manager{
-    public init(){
+public class Manager {
+    
+    public init() {
         
     }
     
-    public func viewController() -> UIViewController{
+    public func viewController() -> UIViewController {
         let bundle = Bundle(for: ViewControllerA.self)
         let vc = ViewControllerA(nibName: "ViewControllerA", bundle: bundle)
         return vc

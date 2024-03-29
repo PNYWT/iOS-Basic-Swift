@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import TestCreateSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FontManager.shared.setupSDKFont()
+        
         return true
     }
 
