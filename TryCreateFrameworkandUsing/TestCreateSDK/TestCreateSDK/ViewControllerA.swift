@@ -44,7 +44,7 @@ extension ViewControllerA : UITableViewDelegate, UITableViewDataSource{
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HelloTableViewCell.identifier, for: indexPath) as! HelloTableViewCell
-        cell.lbHelloIndexPath.text = "Hello : \(indexPath.item)"
+        cell.configContentCell(hello: "Hello :", indexPath: indexPath)
         return cell
     }
 }
