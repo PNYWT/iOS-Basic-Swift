@@ -122,14 +122,11 @@ class TableViewController: UITableViewController, GADBannerViewDelegate {
     preloadNextAd()
   }
 
-  func adView(
-    _ adView: GADBannerView,
-    didFailToReceiveAdWithError error: GADRequestError
-  ) {
-    print("Failed to receive ad: \(error.localizedDescription)")
-    // Load the next ad in the adsToLoad list.
-    preloadNextAd()
-  }
+    func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: any Error) {
+        print("Failed to receive ad: \(error.localizedDescription)")
+        // Load the next ad in the adsToLoad list.
+        preloadNextAd()
+    }
 
   // MARK: - UITableView source data generation
 
@@ -159,7 +156,7 @@ class TableViewController: UITableViewController, GADBannerViewDelegate {
     if !adsToLoad.isEmpty {
       let ad = adsToLoad.removeFirst()
       let adRequest = GADRequest()
-      adRequest.testDevices = [kGADSimulatorID as! String]
+//      adRequest.testDevices = [kGADSimulatorID as! String]
       ad.load(adRequest)
     }
   }
