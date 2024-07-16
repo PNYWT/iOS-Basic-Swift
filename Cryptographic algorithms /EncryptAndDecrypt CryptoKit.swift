@@ -11,20 +11,6 @@ import KeychainSwift
 
 class EncryptAndDecrypt {
     
-    /*
-     let array = ["ABC", "Password1234"]
-     var saveEncrypted = ""
-     //เข้ารหัส
-     if let encryptedPassword = encryptAndDecrypt.encryptObject(object: array[1]) {
-         print("encryptedPassword -> \(encryptedPassword)")
-         saveEncrypted = encryptedPassword
-     }
-     
-     //ถอดรหัส
-     let password = encryptAndDecrypt.decryptObject(encryptedObject: saveEncrypted)
-     print("password -> \(password)")
-     */
-    
     static let username = "usernameKey"
     static let password = "passwordKey"
     private let symmetricKeyChain = "symmetricKey"
