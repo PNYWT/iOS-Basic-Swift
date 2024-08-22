@@ -6,72 +6,72 @@
 //
 
 import Foundation
-import UserNotifications
 import UIKit
 import Combine
 import Firebase
 import FirebaseMessaging
+import FirebaseAnalytics
+import UserNotifications
 
 class UserNotificationManagement: NormalNSObject {
     
-    private (set) var isCheckNotificationStatus = PassthroughSubject<Void, Never>()
-    
-    override init() {
+    init(application: UIApplication) {
         super.init()
-        setupPermission()
+        setupFCM(application)
     }
     
-    private func setupPermission() {
+    private func setupFCM(_ application: UIApplication) {
+        FirebaseApp.configure()
+        Analytics.logEvent("app_start", parameters: [:])
+        Analytics.setUserProperty(UIDevice.current.systemName, forName: "user_os")
         UNUserNotificationCenter.current().delegate = self
-        requestNotificationAuthorization()
-    }
-    
-    private func requestNotificationAuthorization() {
+        Messaging.messaging().delegate = self
         let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.sound, .badge]) { _, error in
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { _, error in
             if let error = error {
                 print("Notification authorization error: \(error)")
             }
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
         }
     }
-    
-    public func setupFCM(_ application: UIApplication) {
-        UNUserNotificationCenter.current().delegate = self
-        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-        UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: { _, _ in
-                
-            })
-        
-        application.registerForRemoteNotifications()
-        
-        Messaging.messaging().delegate = self
+}
+
+extension AppDelegate {
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) { // Push Message 1
+//        let deviceTokenString = deviceToken.map {
+//            String(format: "%02.2hhx", $0)
+//        }.joined()
+//        print("deviceTokenString -> \(deviceTokenString)")
+        Messaging.messaging().apnsToken = deviceToken
+        // ถ้ามี Service ก็ยิงตรงนี้
     }
 }
 
 extension UserNotificationManagement: MessagingDelegate {
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        guard let fcmToken = fcmToken else { return }
-        print("Firebase registration token: \(fcmToken)")
-        // ถ้ามี Service ก็ยิงตรงนี้
-    }
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Messaging.messaging().apnsToken = deviceToken
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) { // Push Message 2
+        guard let fcmToken = fcmToken else { return }
+        if ConfigRelease.showLogConsole {
+            print("Firebase registration token: \(fcmToken)")
+        }
     }
 }
 
 extension UserNotificationManagement: UNUserNotificationCenterDelegate {
+    
     // willPresent: จะถูกเรียกเมื่อ push notification ได้รับขณะที่แอปอยู่ใน foreground (หรือกำลังเปิดอยู่).
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("willPresent")
         UIApplication.shared.applicationIconBadgeNumber += 1
         completionHandler([.badge, .sound])
     }
     
     // didReceive: จะถูกเรียกเมื่อผู้ใช้กดที่ push notification จากที่ใดก็ตามในระบบ (ไม่ว่าแอปจะอยู่ใน foreground หรือ background)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
+        print("didReceive")
         UIApplication.shared.applicationIconBadgeNumber = 0
         completionHandler()
     }
