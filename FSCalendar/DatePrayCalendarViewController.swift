@@ -20,6 +20,7 @@ class DatePrayCalendarViewController: BaseViewController {
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.backgroundColor = .clear
+        view.isScrollEnabled = true
         return view
     }()
     
@@ -83,7 +84,6 @@ class DatePrayCalendarViewController: BaseViewController {
         return view
     }()
     
-    
     // MARK: Table
     private lazy var tableMainView: UITableView = {
         let view = UITableView(frame: .zero, style: .plain)
@@ -96,7 +96,8 @@ class DatePrayCalendarViewController: BaseViewController {
         view.backgroundColor = .clear
         view.separatorStyle = .none
         view.isScrollEnabled = false
-        view.estimatedRowHeight = 60.0
+        view.rowHeight = UITableView.automaticDimension
+        view.estimatedRowHeight = 75.0
         return view
     }()
 
@@ -170,15 +171,16 @@ class DatePrayCalendarViewController: BaseViewController {
         scrollView.addSubview(tableMainView)
         tableMainView.snp.makeConstraints { make in
             make.top.equalTo(calendarFooter.snp.bottom)
+            make.bottom.equalTo(contentView.snp.bottom)
             make.width.equalToSuperview()
-            make.height.equalTo(0.0)
         }
-        tableMainView.backgroundColor = .clear
+        tableMainView.backgroundColor = .red
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         scrollView.contentSize = .init(width: contentSubView.contentView.bounds.width, height: calendarView.bounds.height + calendarFooter.bounds.height + tableMainView.bounds.height)
+        print("tableMainView.bounds.height -> \(tableMainView.bounds.height)")
     }
     
     private func setupBinding() {
@@ -210,6 +212,13 @@ class DatePrayCalendarViewController: BaseViewController {
                 admobViewModel.getBannerAdmob(parentView: bannerView, withRoot: self)
             })
         }
+    }
+    
+    public func clearWhenSelectToday() {
+        let today = Date()
+        calendarView.select(today, scrollToDate: true)
+        calendarView.reloadData()
+        selectTable(date: today)
     }
     
     deinit {
@@ -253,47 +262,47 @@ extension DatePrayCalendarViewController: FSCalendarDataSource, FSCalendarDelega
     
     // MARK: Delegate
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
+        if !isSameMonth(date1: date, date2: calendar.currentPage) {
+            calendar.setCurrentPage(date, animated: true)
+        }
         setupSelect(calendar: calendar)
+        
+        // Select date show in Tableview
+        selectTable(date: date)
+    }
+    
+    private func selectTable(date: Date) {
         let gregorianCalendar = Calendar(identifier: .gregorian)
         let components = gregorianCalendar.dateComponents([.year, .month, .day], from: date)
-        
-        
-        if let cell = calendar.cell(for: date, at: monthPosition) as? CustomCalendarCell, !isSameDay(date1: date, date2: Date()){
-            if selectSameDate == date {
-                cell.currentDateView.backgroundColor = .clear
-                selectSameDate = Date()
-            } else {
-                cell.currentDateView.backgroundColor = .calendarSelectDate
-                cell.dateLabel.tintColor = .white
-                selectSameDate = date
-            }
-        }
-        
         guard let year = components.year, let month = components.month,
                 let dataList = datePrayCalendarViewModel.holidaysByYearAndMonth[year]?[month] else {
             selectDateShowTbv = []
-            tableMainView.snp.updateConstraints { make in
-                make.height.equalTo(0.0)
-            }
             tableMainView.reloadData()
             return
         }
         let selectedDateString = date.getDateToCheckDetail()
-        let filteredDataList = dataList.filter { $0.buddhist_calendar_date == selectedDateString }
-        
-        tableMainView.snp.updateConstraints { make in
-            make.height.equalTo( 60 * filteredDataList.count)
+//        print("date.getDateToCheckDetail() -> \(date.getDateToCheckDetail())")
+        let filteredDataList = dataList.filter { $0.buddhist_calendar_date == selectedDateString
         }
-        
+        let aaaaa = filteredDataList
+        let bbbbb = filteredDataList
+        selectDateShowTbv = filteredDataList + aaaaa + bbbbb + aaaaa + bbbbb + aaaaa + bbbbb + aaaaa + bbbbb + aaaaa + bbbbb + aaaaa + bbbbb
+        #if DEBUG
+        print("selectDateShowTbv -> \(selectDateShowTbv)")
+        #endif
+
         DispatchQueue.main.async { [weak self] in
-            self?.selectDateShowTbv = filteredDataList
+            
             self?.tableMainView.reloadData()
         }
     }
     
-    private func isSameDay(date1: Date, date2: Date) -> Bool {
+    private func isSameMonth(date1: Date, date2: Date) -> Bool {
         let calendar = Calendar.current
-        return calendar.isDate(date1, inSameDayAs: date2)
+        let components1 = calendar.dateComponents([.year, .month], from: date1)
+        let components2 = calendar.dateComponents([.year, .month], from: date2)
+        return components1.year == components2.year && components1.month == components2.month
     }
     
     private func setupSelect(calendar: FSCalendar) {
@@ -324,16 +333,11 @@ extension DatePrayCalendarViewController: UITableViewDelegate, UITableViewDataSo
         return selectDateShowTbv.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60.0
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CalendarTableViewCell.self), for: indexPath) as? CalendarTableViewCell else {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
-        cell.backgroundColor = .white
         cell.setupContent(model: selectDateShowTbv[indexPath.row])
         return cell
     }

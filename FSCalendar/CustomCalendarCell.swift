@@ -38,12 +38,12 @@ class CustomCalendarCell: FSCalendarCell {
         view.clipsToBounds = true
         return view
     }()
-    private lazy var selectionLayer: CAShapeLayer = {
-        let view = CAShapeLayer()
-        view.fillColor = UIColor.black.cgColor
-        view.actions = ["hidden": NSNull()]
-        return view
-    }()
+//    private lazy var selectionLayer: CAShapeLayer = {
+//        let view = CAShapeLayer()
+//        view.fillColor = UIColor.black.cgColor
+//        view.actions = ["hidden": NSNull()]
+//        return view
+//    }()
     
     private (set) lazy var currentDateView: UIView = {
         let view = UIView()
@@ -70,8 +70,8 @@ class CustomCalendarCell: FSCalendarCell {
         contentView.backgroundColor = .white
         setupConstraints()
         
-        currentDateView.layer.insertSublayer(selectionLayer, at: 0)
-        self.selectionLayer = selectionLayer
+//        currentDateView.layer.insertSublayer(selectionLayer, at: 0)
+//        self.selectionLayer = selectionLayer
     }
     
     //MARK: configureCalendar
@@ -85,9 +85,29 @@ class CustomCalendarCell: FSCalendarCell {
         dateLabel.text = "\(day)"
         datelbDetail.text = ""
         imageDay.image = nil
-        print("calendarView -> \(calendarView.currentPage), currentDate -> \(currentDate)")
-
-        if calendar.component(.month, from: calendarView.currentPage) == calendar.component(.month, from: date) {
+//        print("calendarView -> \(calendarView.currentPage), currentDate -> \(currentDate)")
+        
+        if !isSameDay(date1: date, date2: Date()), let selectDate = calendarView.selectedDate {
+            if selectDate == date {
+                if calendar.component(.month, from: calendarView.currentPage) == calendar.component(.month, from: date) {
+                    currentDateView.backgroundColor = .calendarSelectDate
+                    dateLabel.textColor = .white
+                    contentView.alpha = 1.0
+                }
+            } else {
+                setDefaultCell(calendarView: calendarView, calendar: calendar, date: date, currentDate: currentDate)
+            }
+        } else {
+            setDefaultCell(calendarView: calendarView, calendar: calendar, date: date, currentDate: currentDate)
+        }
+        if weekday == 1 || weekday == 7 {
+            dateLabel.textColor = .red
+        }
+        checkShowDataDate(detailCalendar: detailCalendar, date: date)
+    }
+    
+    private func setDefaultCell(calendarView: FSCalendar, calendar: Calendar, date: Date, currentDate: Bool) {
+        if calendar.component(.month, from: calendarView.currentPage) == calendar.component(.month, from: date) { // เทียบเดือนเดียวกัน
             currentDateView.backgroundColor = .calendarCurrentDate
             if currentDate {
                 contentView.alpha = 1.0
@@ -97,21 +117,21 @@ class CustomCalendarCell: FSCalendarCell {
                 currentDateView.backgroundColor = .clear
                 dateLabel.textColor = .lbBlack
             }
-        } else {
+        } else {  // สีจางสำหรับวันที่ไม่ใช่ของเดือนนี้
             currentDateView.backgroundColor = .clear
-            dateLabel.textColor = .lightGray // สีจางสำหรับวันที่ไม่ใช่ของเดือนนี้
+            dateLabel.textColor = .lightGray
             contentView.alpha = 0.5
             if currentDate {
                 dateLabel.textColor = .white
                 currentDateView.backgroundColor = .calendarCurrentDate
             }
         }
-        if weekday == 1 || weekday == 7 {
-            dateLabel.textColor = .red
-        }
-        checkShowDataDate(detailCalendar: detailCalendar, date: date)
     }
 
+    private func isSameDay(date1: Date, date2: Date) -> Bool {
+        let calendar = Calendar.current
+        return calendar.isDate(date1, inSameDayAs: date2)
+    }
     
     private func checkShowDataDate(detailCalendar: [BuddhistCalendarModel]?, date: Date) {
         if let model = detailCalendar?.first(where: { $0.buddhist_calendar_date == date.getDateToCheckDetail() }) {
