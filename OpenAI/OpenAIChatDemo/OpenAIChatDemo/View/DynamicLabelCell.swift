@@ -43,7 +43,7 @@ class DynamicLabelCell: UITableViewCell {
     }
     
     public func configure(with chatMessage: ChatMessage) {
-//        print("chatMessage -> \(chatMessage)")
+        print("chatMessage -> \(chatMessage)")
         switch chatMessage.role {
         case .assistant, .system:
             labelChat.text = String(format: "%@: %@", chatMessage.role.rawValue.uppercased(), chatMessage.content)

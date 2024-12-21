@@ -65,7 +65,9 @@ extension OpenAICaller {
                     guard let modelChat = model.choices?.first?.message else {
                         return
                     }
+                   print("modelChat -> \(modelChat)")
                     chatHistory.append(modelChat)
+                   chatUIHistory.append(modelChat)
                     completion(.success(true))
                 case .failure(let error):
                     completion(.failure(error))

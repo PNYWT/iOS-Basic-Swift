@@ -10,7 +10,15 @@ import SnapKit
 import OpenAISwift
 
 class ViewController: UIViewController {
-    
+   
+   private lazy var buttonSend: UIButton = {
+      let view = UIButton()
+      view.setTitle("Send", for: .normal)
+      view.titleLabel?.textColor = .white
+      view.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+      return view
+   }()
+   
     private lazy var fieldText: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Ask Question..."
@@ -44,6 +52,14 @@ class ViewController: UIViewController {
             make.bottom.equalTo(view.snp.bottomMargin)
             make.height.equalTo(50.0)
         }
+       
+       view.addSubview(buttonSend)
+       buttonSend.snp.makeConstraints { make in
+          make.bottom.equalTo(view.snp.bottomMargin)
+          make.width.height.equalTo(fieldText.snp.height)
+          make.trailing.equalToSuperview().offset(-8.0)
+       }
+       buttonSend.isUserInteractionEnabled = true
         
         view.addSubview(tableChat)
         tableChat.snp.makeConstraints { make in
@@ -72,6 +88,23 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(with: openAICaller.chatUIHistory[indexPath.row])
         return cell
     }
+   
+   @objc func sendMessage() {
+      if let haveText = fieldText.text, !haveText.isEmpty {
+          openAICaller.getReponse(input: haveText) { [weak self] (resultChat: Result<Bool, Error>)  in
+              switch resultChat {
+              case .success(_):
+                  print("Request Success")
+                  DispatchQueue.main.async {
+                      self?.tableChat.reloadData()
+                      self?.fieldText.text = nil
+                  }
+              case .failure(let failure):
+                  print("Fail -> \(failure.localizedDescription)")
+              }
+          }
+      }
+   }
 }
 
 extension ViewController: UITextFieldDelegate {
