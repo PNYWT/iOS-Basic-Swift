@@ -16,6 +16,8 @@ struct TabbarContentView: View {
     
     @State private var selectedTab = 0
     @Environment(\.idProviderValue) var idProvider
+    
+    @Binding var apiKey: String
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -40,7 +42,8 @@ struct TabbarContentView: View {
             
             // ไม่แน่ใจกำลังแกะ
             MiscView(
-                store: miscStore
+                store: miscStore,
+                apiKey: $apiKey
             )
             .tabItem {
                 Label("Misc", systemImage: "ellipsis")

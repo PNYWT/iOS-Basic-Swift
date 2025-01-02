@@ -56,7 +56,8 @@ struct APIProvidedView: View {
         TabbarContentView(
             chatStore: chatStore,
             imageStore: imageStore,
-            miscStore: miscStore
+            miscStore: miscStore,
+            apiKey: _apiKey
         )
         .onChange(of: apiKey) { newApiKey in
             let client = OpenAI(apiToken: newApiKey)

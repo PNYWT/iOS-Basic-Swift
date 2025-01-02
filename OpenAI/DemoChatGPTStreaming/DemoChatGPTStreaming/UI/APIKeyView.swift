@@ -86,6 +86,17 @@ struct APIKeyView: View {
                         .buttonStyle(.borderedProminent)
                         .disabled(internalAPIKey.isEmpty)
                         
+                        Button {
+                            dismiss()
+                        } label: {
+                            Text(
+                                "Close"
+                            )
+                            .padding(8)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(.red)
+                        
                         Spacer()
                     }
                 }

@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct DemoChatGPTStreamingApp: App {
     
-    private var manualKey: String = ""
+    @AppStorage("deviceUUID") var deviceUUID: String = ""
     @AppStorage("apiKey") var apiKey: String = ""
     @State var isShowingAPIConfigModal: Bool = false
     
@@ -34,14 +34,7 @@ struct DemoChatGPTStreamingApp: App {
             }
             
             .onAppear {
-                if manualKey.isEmpty {
-                    UserDefaults.standard.removeObject(forKey: "apiKey")
-                } else {
-                    apiKey = manualKey
-                }
-                if apiKey.isEmpty {
-                    isShowingAPIConfigModal.toggle()
-                }
+                checkDevice()
             }
 #if os(iOS)
                 .fullScreenCover(isPresented: $isShowingAPIConfigModal) {
@@ -52,6 +45,26 @@ struct DemoChatGPTStreamingApp: App {
                     APIKeyView(apiKey: $apiKey)
                 }
 #endif
+        }
+    }
+    
+    private func checkDevice() {
+        if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+            if uuid != deviceUUID {
+                deviceUUID = uuid
+                UserDefaults.standard.removeObject(forKey: "apiKey")
+                isShowingAPIConfigModal.toggle()
+            } else {
+                if apiKey.isEmpty {
+                    isShowingAPIConfigModal.toggle()
+                }
+            }
+            #if DEBUG
+            print("uuid -> \(uuid)")
+            #endif
+        } else {
+            UserDefaults.standard.removeObject(forKey: "apiKey")
+            isShowingAPIConfigModal.toggle()
         }
     }
 }

@@ -9,14 +9,19 @@ import SwiftUI
 
 public struct MiscView: View {
     @ObservedObject var store: MiscStore
+    @Binding var apiKey: String
     
-    public init(store: MiscStore) {
+    public init(store: MiscStore, apiKey: Binding<String>) {
+        self._apiKey = apiKey
         self.store = store
     }
     
     public var body: some View {
         NavigationStack {
             List {
+                Section(header: Text("API Key")) {
+                    NavigationLink("OpenAI API key", destination: APIKeyView(apiKey: $apiKey))
+                }
                 Section(header: Text("Models")) {
                     NavigationLink("List Models", destination: ListModelsView(store: store))
                     NavigationLink("Retrieve Model", destination: RetrieveModelView())
