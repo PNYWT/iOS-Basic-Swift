@@ -76,7 +76,7 @@ extension CltvViewCell: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < 0 {
             tableView.snp.updateConstraints { make in
-                make.top.equalTo(contentView.snp.top).offset(maxSpaceTop)
+                make.top.equalTo(contentView.snp.top).offset(maxSpaceTop + abs(scrollView.contentOffset.y))
             }
         } else if scrollView.contentOffset.y > 0 && scrollView.contentOffset.y <= maxSpaceTop {
             tableView.snp.updateConstraints { make in
