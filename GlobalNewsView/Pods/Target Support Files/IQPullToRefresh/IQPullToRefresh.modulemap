@@ -1,0 +1,6 @@
+framework module IQPullToRefresh {
+  umbrella header "IQPullToRefresh-umbrella.h"
+
+  export *
+  module * { export * }
+}
