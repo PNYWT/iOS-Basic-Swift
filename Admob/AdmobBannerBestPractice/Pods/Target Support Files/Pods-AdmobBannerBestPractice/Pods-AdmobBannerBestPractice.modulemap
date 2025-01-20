@@ -1,6 +1,0 @@
-framework module Pods_AdmobBannerBestPractice {
-  umbrella header "Pods-AdmobBannerBestPractice-umbrella.h"
-
-  export *
-  module * { export * }
-}

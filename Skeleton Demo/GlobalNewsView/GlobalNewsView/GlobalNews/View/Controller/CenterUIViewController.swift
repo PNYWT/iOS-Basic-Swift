@@ -50,6 +50,7 @@ class CenterUIViewController: UIViewController {
     }
     
     init(uiNavModel: CenterUIVCModel) {
+        isNeedCustomNav = true
         modelUI = uiNavModel
         super.init(nibName: nil, bundle: nil)
     }
