@@ -46,6 +46,12 @@ class NewsTableViewCell: UITableViewCell {
         return view
     }()
     
+    private lazy var imageNewsView: UIImageView = {
+        let view = UIImageView(image: .icNewsView)
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     private lazy var lbView: UILabel = {
         let view = UILabel()
         view.backgroundColor = .clear
@@ -89,11 +95,13 @@ class NewsTableViewCell: UITableViewCell {
         contentCellView.addSubview(lbTitleNews)
         contentCellView.addSubview(lbDate)
         contentCellView.addSubview(lbView)
+        contentCellView.addSubview(imageNewsView)
         isSkeletonable = true
         contentCellView.isSkeletonable = true
         imageNews.isSkeletonable = true
         lbTitleNews.isSkeletonable = true
         lbView.isSkeletonable = true
+        imageNewsView.isSkeletonable = true
         lbDate.isSkeletonable = true
         
         contentCellView.snp.makeConstraints { make in
@@ -124,7 +132,13 @@ class NewsTableViewCell: UITableViewCell {
         lbView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-8.0)
             make.centerY.equalTo(lbDate)
-            make.width.greaterThanOrEqualTo(20)
+            make.width.greaterThanOrEqualTo(0.1)
+        }
+        
+        imageNewsView.snp.makeConstraints { make in
+            make.trailing.equalTo(lbView.snp.leading).offset(-4.0)
+            make.centerY.equalTo(lbView)
+            make.width.height.equalTo(20)
         }
         
         imageNews.snp.makeConstraints { make in
@@ -151,17 +165,6 @@ class NewsTableViewCell: UITableViewCell {
     
     @MainActor
     public func setViewCell(model: GlobaleListNews) {
-//        if model.pin {
-//            backgroundColor = .systemPink
-////            if let haveBanner = model.isBanner, haveBanner {
-////                backgroundColor = .green
-////            }
-//        } else {
-//            backgroundColor = .white
-////            if let haveBanner = model.isBanner, haveBanner {
-////                backgroundColor = .green
-////            }
-//        }
         self.showAnimatedGradientSkeleton()
         imageNews.sd_setImage(with: URL(string: model.image)) { [weak self] _, _, _, _ in
             guard let self = self else {
@@ -170,7 +173,7 @@ class NewsTableViewCell: UITableViewCell {
             stopSkeletonAnimation()
             hideSkeleton(reloadDataAfter: true, transition: .crossDissolve(0.25))
             lbTitleNews.text = model.title
-            lbView.text = "View " + .formatNumberWithCommas(model.total_view)
+            lbView.text = .formatNumberWithCommas(model.total_view)
             lbDate.text = model.article_date
             
             pinNews.isHidden = !model.is_pin_news

@@ -22,9 +22,16 @@ class PinCltvOtherViewCell: UICollectionViewCell {
 
     private lazy var imageMain: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleToFill
+        view.contentMode = .scaleAspectFill
         view.backgroundColor = .clear
         view.makeCornerRadius(radius: 16.0, needMasksToBounds: true)
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.alpha = 0.3
+        view.addSubview(blurredEffectView)
+        blurredEffectView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         return view
     }()
     
@@ -32,7 +39,7 @@ class PinCltvOtherViewCell: UICollectionViewCell {
         let view = UILabel()
         view.textColor = .white
         view.numberOfLines = 2
-        view.textAlignment = .center
+        view.textAlignment = .left
         view.font = .systemFont(ofSize: 14, weight: .bold)
         return view
     }()

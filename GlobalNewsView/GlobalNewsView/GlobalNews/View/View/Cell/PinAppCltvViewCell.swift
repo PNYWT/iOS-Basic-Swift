@@ -23,8 +23,15 @@ class PinAppCltvViewCell: UICollectionViewCell {
 
     private lazy var imageMain: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleToFill
+        view.contentMode = .scaleAspectFill
         view.backgroundColor = .clear
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.alpha = 0.3
+        view.addSubview(blurredEffectView)
+        blurredEffectView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         return view
     }()
     
@@ -137,10 +144,4 @@ class PinAppCltvViewCell: UICollectionViewCell {
             lbTitleNews.text = model.title
         }
     }
-    
-    /*
-     @objc private func actionReadMore() {
-         
-     }
-     */
 }
