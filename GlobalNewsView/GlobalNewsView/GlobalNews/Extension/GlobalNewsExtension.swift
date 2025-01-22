@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIView {
+    
     public func makeCornerRadius(radius: CGFloat, needMasksToBounds: Bool) {
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = needMasksToBounds
@@ -22,6 +23,31 @@ extension UIView {
             }
         }
         return nil
+    }
+    
+    @MainActor
+    public func pushNavigationToReadNews(modelNews: GlobaleListNews, needTransitionFlip: Bool = false, needAnimation: Bool = true) {
+        let goWhere = GlobalNewsReadVC(title: modelNews.title, urlWebString: modelNews.webview)
+        guard let currentVC = getOwningViewController()?.navigationController else {
+            return
+        }
+        if needTransitionFlip {
+            UIView.transition(with: currentVC.view, duration: 0.5, options: .transitionFlipFromRight) {
+                currentVC.pushViewController(goWhere, animated: false)
+            }
+        } else {
+            currentVC.pushViewController(goWhere, animated: needAnimation)
+        }
+    }
+}
+
+extension UIResponder {
+    func getOwningViewController() -> UIViewController? {
+        if let viewController = self as? UIViewController {
+            return viewController
+        } else {
+            return next?.getOwningViewController()
+        }
     }
 }
 

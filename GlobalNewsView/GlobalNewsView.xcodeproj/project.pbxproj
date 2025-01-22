@@ -13,7 +13,18 @@
 		D77EBC852D311A32001B921F /* PreloadActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EBC842D311A32001B921F /* PreloadActivityIndicatorView.swift */; };
 		D77EBC872D311A72001B921F /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EBC862D311A72001B921F /* NewsTableViewCell.swift */; };
 		D77EBC8A2D311A96001B921F /* GlobalNewsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EBC892D311A96001B921F /* GlobalNewsExtension.swift */; };
-		D77EBCB32D3518A8001B921F /* PinCltvViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EBCB22D3518A7001B921F /* PinCltvViewCell.swift */; };
+		D77EBCB32D3518A8001B921F /* PinAppCltvViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D77EBCB22D3518A7001B921F /* PinAppCltvViewCell.swift */; };
+		D7C50A852D375BC700F11532 /* CltvHeaderTypeAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C50A842D375BC700F11532 /* CltvHeaderTypeAppView.swift */; };
+		D7C50A8D2D37758C00F11532 /* CltvHeaderTypeOtherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C50A8C2D37758C00F11532 /* CltvHeaderTypeOtherView.swift */; };
+		D7C50A902D3775FE00F11532 /* PinCltvOtherViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C50A8F2D3775FE00F11532 /* PinCltvOtherViewCell.swift */; };
+		D7C50A922D37787F00F11532 /* GlobalNewsReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C50A912D37787F00F11532 /* GlobalNewsReadVC.swift */; };
+		D7C50A982D37902000F11532 /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C50A972D37902000F11532 /* NavController.swift */; };
+		D7C50A9A2D37936B00F11532 /* AdMobViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C50A992D37936B00F11532 /* AdMobViewModel.swift */; };
+		D7C50A9C2D37BB9B00F11532 /* SmallNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7C50A9B2D37BB9B00F11532 /* SmallNativeAdView.xib */; };
+		D7C50A9E2D37BD8C00F11532 /* NativeAdmobViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C50A9D2D37BD8C00F11532 /* NativeAdmobViewCell.swift */; };
+		D7C50AA02D3A2F4D00F11532 /* CenterUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C50A9F2D3A2F4D00F11532 /* CenterUIViewController.swift */; };
+		D7C50AA22D3A2FB400F11532 /* NavView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7C50AA12D3A2FB400F11532 /* NavView.swift */; };
+		D7C50AA42D3A450E00F11532 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D7C50AA32D3A450E00F11532 /* README.md */; };
 		D7FA4A552D2E6D5300D35981 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FA4A542D2E6D5300D35981 /* AppDelegate.swift */; };
 		D7FA4A572D2E6D5300D35981 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FA4A562D2E6D5300D35981 /* SceneDelegate.swift */; };
 		D7FA4A592D2E6D5300D35981 /* GlobalNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7FA4A582D2E6D5300D35981 /* GlobalNewsViewController.swift */; };
@@ -35,7 +46,18 @@
 		D77EBC842D311A32001B921F /* PreloadActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadActivityIndicatorView.swift; sourceTree = "<group>"; };
 		D77EBC862D311A72001B921F /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		D77EBC892D311A96001B921F /* GlobalNewsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalNewsExtension.swift; sourceTree = "<group>"; };
-		D77EBCB22D3518A7001B921F /* PinCltvViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCltvViewCell.swift; sourceTree = "<group>"; };
+		D77EBCB22D3518A7001B921F /* PinAppCltvViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinAppCltvViewCell.swift; sourceTree = "<group>"; };
+		D7C50A842D375BC700F11532 /* CltvHeaderTypeAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CltvHeaderTypeAppView.swift; sourceTree = "<group>"; };
+		D7C50A8C2D37758C00F11532 /* CltvHeaderTypeOtherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CltvHeaderTypeOtherView.swift; sourceTree = "<group>"; };
+		D7C50A8F2D3775FE00F11532 /* PinCltvOtherViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCltvOtherViewCell.swift; sourceTree = "<group>"; };
+		D7C50A912D37787F00F11532 /* GlobalNewsReadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalNewsReadVC.swift; sourceTree = "<group>"; };
+		D7C50A972D37902000F11532 /* NavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
+		D7C50A992D37936B00F11532 /* AdMobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdMobViewModel.swift; sourceTree = "<group>"; };
+		D7C50A9B2D37BB9B00F11532 /* SmallNativeAdView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmallNativeAdView.xib; sourceTree = "<group>"; };
+		D7C50A9D2D37BD8C00F11532 /* NativeAdmobViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeAdmobViewCell.swift; sourceTree = "<group>"; };
+		D7C50A9F2D3A2F4D00F11532 /* CenterUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterUIViewController.swift; sourceTree = "<group>"; };
+		D7C50AA12D3A2FB400F11532 /* NavView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavView.swift; sourceTree = "<group>"; };
+		D7C50AA32D3A450E00F11532 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D7FA4A512D2E6D5300D35981 /* GlobalNewsView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GlobalNewsView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7FA4A542D2E6D5300D35981 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7FA4A562D2E6D5300D35981 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,7 +106,11 @@
 		D77EBC812D30EFC8001B921F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D7C50A972D37902000F11532 /* NavController.swift */,
+				D7C50A9F2D3A2F4D00F11532 /* CenterUIViewController.swift */,
 				D7FA4A582D2E6D5300D35981 /* GlobalNewsViewController.swift */,
+				D7FA4A742D2E89D400D35981 /* DetailPageViewController.swift */,
+				D7C50A912D37787F00F11532 /* GlobalNewsReadVC.swift */,
 				D7FA4A762D2E8AC000D35981 /* ContentVC.swift */,
 			);
 			path = Controller;
@@ -96,6 +122,32 @@
 				D77EBC892D311A96001B921F /* GlobalNewsExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		D7C50A8E2D3775F000F11532 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D77EBCB22D3518A7001B921F /* PinAppCltvViewCell.swift */,
+				D7C50A8F2D3775FE00F11532 /* PinCltvOtherViewCell.swift */,
+				D77EBC862D311A72001B921F /* NewsTableViewCell.swift */,
+				D7C50A9D2D37BD8C00F11532 /* NativeAdmobViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		D7C50A932D37894400F11532 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D7C50A8E2D3775F000F11532 /* Cell */,
+				D7C50A9B2D37BB9B00F11532 /* SmallNativeAdView.xib */,
+				D7C50AA12D3A2FB400F11532 /* NavView.swift */,
+				D77EBC7F2D30EF9D001B921F /* CustomButton.swift */,
+				D77EBC842D311A32001B921F /* PreloadActivityIndicatorView.swift */,
+				D7FA4A682D2E6D6D00D35981 /* GlobalNewsHeaderView.swift */,
+				D7C50A842D375BC700F11532 /* CltvHeaderTypeAppView.swift */,
+				D7C50A8C2D37758C00F11532 /* CltvHeaderTypeOtherView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D7FA4A482D2E6D5300D35981 = {
@@ -119,6 +171,7 @@
 		D7FA4A532D2E6D5300D35981 /* GlobalNewsView */ = {
 			isa = PBXGroup;
 			children = (
+				D7C50AA32D3A450E00F11532 /* README.md */,
 				D7FA4A542D2E6D5300D35981 /* AppDelegate.swift */,
 				D7FA4A562D2E6D5300D35981 /* SceneDelegate.swift */,
 				D7FA4A6C2D2E752100D35981 /* GlobalNews */,
@@ -134,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				D77EBC882D311A8B001B921F /* Extension */,
-				D77EBC812D30EFC8001B921F /* Controller */,
 				D7FA4A712D2E838700D35981 /* Model */,
 				D7FA4A6E2D2E785D00D35981 /* ViewModel */,
 				D7FA4A6D2D2E785300D35981 /* View */,
@@ -145,12 +197,8 @@
 		D7FA4A6D2D2E785300D35981 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D7FA4A682D2E6D6D00D35981 /* GlobalNewsHeaderView.swift */,
-				D7FA4A742D2E89D400D35981 /* DetailPageViewController.swift */,
-				D77EBC7F2D30EF9D001B921F /* CustomButton.swift */,
-				D77EBC842D311A32001B921F /* PreloadActivityIndicatorView.swift */,
-				D77EBCB22D3518A7001B921F /* PinCltvViewCell.swift */,
-				D77EBC862D311A72001B921F /* NewsTableViewCell.swift */,
+				D77EBC812D30EFC8001B921F /* Controller */,
+				D7C50A932D37894400F11532 /* View */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,6 +206,7 @@
 		D7FA4A6E2D2E785D00D35981 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D7C50A992D37936B00F11532 /* AdMobViewModel.swift */,
 				D7FA4A6F2D2E786800D35981 /* GlobalNewsViewModel.swift */,
 				D77EBC822D3108E4001B921F /* GlobalRequestNewsViewModel.swift */,
 			);
@@ -184,6 +233,7 @@
 				D7FA4A4E2D2E6D5300D35981 /* Frameworks */,
 				D7FA4A4F2D2E6D5300D35981 /* Resources */,
 				76562F29638D982664D9D610 /* [CP] Embed Pods Frameworks */,
+				CE72DCD8F93AC8DAE22903E2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -234,6 +284,8 @@
 			files = (
 				D7FA4A5E2D2E6D5400D35981 /* Assets.xcassets in Resources */,
 				D7FA4A612D2E6D5400D35981 /* Base in Resources */,
+				D7C50AA42D3A450E00F11532 /* README.md in Resources */,
+				D7C50A9C2D37BB9B00F11532 /* SmallNativeAdView.xib in Resources */,
 				D7FA4A5C2D2E6D5300D35981 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +308,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GlobalNewsView/Pods-GlobalNewsView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CE72DCD8F93AC8DAE22903E2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GlobalNewsView/Pods-GlobalNewsView-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GlobalNewsView/Pods-GlobalNewsView-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GlobalNewsView/Pods-GlobalNewsView-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D474C5384A7C373DC3C1A337 /* [CP] Check Pods Manifest.lock */ = {
@@ -287,18 +356,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7C50A922D37787F00F11532 /* GlobalNewsReadVC.swift in Sources */,
 				D7FA4A752D2E89D400D35981 /* DetailPageViewController.swift in Sources */,
 				D77EBC852D311A32001B921F /* PreloadActivityIndicatorView.swift in Sources */,
 				D7FA4A692D2E6D6D00D35981 /* GlobalNewsHeaderView.swift in Sources */,
-				D77EBCB32D3518A8001B921F /* PinCltvViewCell.swift in Sources */,
+				D77EBCB32D3518A8001B921F /* PinAppCltvViewCell.swift in Sources */,
+				D7C50A852D375BC700F11532 /* CltvHeaderTypeAppView.swift in Sources */,
 				D7FA4A702D2E786800D35981 /* GlobalNewsViewModel.swift in Sources */,
 				D77EBC802D30EF9D001B921F /* CustomButton.swift in Sources */,
 				D7FA4A592D2E6D5300D35981 /* GlobalNewsViewController.swift in Sources */,
 				D7FA4A772D2E8AC000D35981 /* ContentVC.swift in Sources */,
+				D7C50A8D2D37758C00F11532 /* CltvHeaderTypeOtherView.swift in Sources */,
 				D7FA4A552D2E6D5300D35981 /* AppDelegate.swift in Sources */,
+				D7C50A902D3775FE00F11532 /* PinCltvOtherViewCell.swift in Sources */,
+				D7C50AA22D3A2FB400F11532 /* NavView.swift in Sources */,
 				D77EBC832D3108E4001B921F /* GlobalRequestNewsViewModel.swift in Sources */,
+				D7C50A9A2D37936B00F11532 /* AdMobViewModel.swift in Sources */,
 				D77EBC872D311A72001B921F /* NewsTableViewCell.swift in Sources */,
+				D7C50A9E2D37BD8C00F11532 /* NativeAdmobViewCell.swift in Sources */,
+				D7C50A982D37902000F11532 /* NavController.swift in Sources */,
 				D77EBC8A2D311A96001B921F /* GlobalNewsExtension.swift in Sources */,
+				D7C50AA02D3A2F4D00F11532 /* CenterUIViewController.swift in Sources */,
 				D7FA4A572D2E6D5300D35981 /* SceneDelegate.swift in Sources */,
 				D7FA4A732D2E839C00D35981 /* GlobaleNewsModel.swift in Sources */,
 			);

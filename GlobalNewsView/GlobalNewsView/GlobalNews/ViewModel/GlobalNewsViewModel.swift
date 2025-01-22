@@ -21,7 +21,7 @@ class GlobalNewsViewModel: NSObject {
     var messageAlert = PassthroughSubject<String, Never>()
     
     // Request Tab
-    public func getTabHeader(contentBackground: UIColor) {
+    public func getTabHeader(modelUI: GlobalNewsUIModel) {
         AF.request("").response { response in
             switch response.result {
             case .success(let data):
@@ -32,21 +32,15 @@ class GlobalNewsViewModel: NSObject {
                     return
                 }
 #if DEBUG
-                print("getTabHeader -> \(object)")
+                print("getTabHeader Request")
+                self.printDataJSON(data: haveData)
 #endif
                 if object.code == "101" {
                     let group = DispatchGroup()
                     group.enter()
                     DispatchQueue.main.async {
                         for item in object.data {
-                            let vc = ContentVC.init(tabModel: item, background: contentBackground)
-                           /*
-                            if self.pageCollection.pages.count % 2 == 0 {
-                                vc.view.backgroundColor = .green
-                            } else {
-                                vc.view.backgroundColor = .red
-                            }
-                            */
+                            let vc = ContentVC.init(tabModel: item, modelUI: modelUI)
                             let page = Page(with: item.cat_name, _vc: vc)
                             self.pageCollection.pages.append(page)
                         }

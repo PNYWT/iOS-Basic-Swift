@@ -11,4 +11,6 @@ pod 'SDWebImage'
 pod 'SnapKit'
 pod 'IQPullToRefresh'
 pod "SkeletonView"
+pod 'CHIPageControl/Jaloro'
+pod 'Google-Mobile-Ads-SDK'
 end

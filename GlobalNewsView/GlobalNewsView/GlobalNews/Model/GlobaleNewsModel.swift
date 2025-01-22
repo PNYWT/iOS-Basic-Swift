@@ -12,9 +12,13 @@ import UIKit
 struct GlobalNewsUIModel {
     var globalNewsViewBackground: UIColor! = #colorLiteral(red: 0.8093395829, green: 0.8442677855, blue: 0.8780124784, alpha: 1)
     var headerBackgroundColor: UIColor! = .clear
-    var detailTabBackgroundColor: UIColor! = .clear
     var buttonSelectColor: UIColor! = #colorLiteral(red: 0.2245355844, green: 0.5801904202, blue: 0.9987623096, alpha: 1)
     var buttonNonSelectColor: UIColor! = .clear
+    var buttonTitleColorNormal: UIColor! = .white
+    var buttonTitleColorSelect: UIColor! = .white
+    var underlineColor: UIColor! = .white
+    var pageControlColorSelect: UIColor! = .white
+    var pageControlColorNonSelect: UIColor! = .gray
 }
 
 struct Page {
@@ -39,6 +43,7 @@ struct GlobalNewsTabDataModel: Codable {
 
 struct GlobalNewsTabModel: Codable {
     var cat_name: String!
+    var list_news_title: String!
     var cat: String!
     var cat_default: Bool!
     var app: String!
@@ -56,14 +61,15 @@ struct GlobaleNewsData: Codable {
     var pin_news: [GlobaleListNews] = []
 }
 
-struct GlobaleListNews: Codable {
+public struct GlobaleListNews: Codable {
     var title: String! = ""
     var image: String! = ""
     var webview: String! = ""
     var total_view: Int! = 0
     var article_date: String! = ""
+    var isNative: Bool! = false
+    var is_pin_news: Bool!
 }
-
 
 struct GlobalTopPinModel {
     var title: String!
