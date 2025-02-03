@@ -69,19 +69,20 @@ class AdmobViewModel: NSObject {
         }
     }
     
-    private func callAdmobBanner() {
+    public func callAdmobBanner() {
         if UMPConsentInformation.sharedInstance.canRequestAds {
+            print(UMPConsentInformation.sharedInstance.canRequestAds)
             let adaptiveSize = GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(UIScreen.main.bounds.width)
             bannerView = GADBannerView(adSize: adaptiveSize)
             bannerView?.adUnitID = "ca-app-pub-3940256099942544/2435281174"
             bannerView?.rootViewController = viewController
             bannerView?.delegate = self
-            bannerView?.load(GADRequest())
             viewController.view.addSubview(bannerView!)
             bannerView?.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
                 make.bottom.equalToSuperview().offset(-16.0)
             }
+            bannerView?.load(GADRequest())
         } else {
             bannerView?.removeFromSuperview()
         }

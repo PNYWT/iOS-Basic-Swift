@@ -23,7 +23,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func actionModify(_ sender: Any) {
-        UMPConsentForm.presentPrivacyOptionsForm(from: self)
+        UMPConsentForm.presentPrivacyOptionsForm(from: self) { _ in
+            self.admobViewModel.callAdmobBanner()
+        }
     }
 }
 
