@@ -1,0 +1,6 @@
+framework module Pods_DemoUMP {
+  umbrella header "Pods-DemoUMP-umbrella.h"
+
+  export *
+  module * { export * }
+}

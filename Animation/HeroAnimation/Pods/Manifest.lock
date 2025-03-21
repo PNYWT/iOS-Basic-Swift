@@ -1,0 +1,20 @@
+PODS:
+  - Hero (1.6.4)
+  - SnapKit (5.7.1)
+
+DEPENDENCIES:
+  - Hero
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - Hero
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Hero: 473a0143017e1371d050fcbedb67d317925097f2
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+
+PODFILE CHECKSUM: 514784b0b1c58d70b264829aeb15e1e3f35173e4
+
+COCOAPODS: 1.16.2
